@@ -12,7 +12,7 @@ import { SubmitHandler } from "react-hook-form";
 // import { ToggleButtonGroupTypeProps } from "./ToggleButtonGroup/types";
 
 export type FormProps<TFormValues> = {
-  onSubmit: SubmitHandler<TFormValues>;
+  onSubmit?: SubmitHandler<TFormValues>;
   children: React.ReactNode;
   // Autocomplete?: React.ReactElement<AutocompleteProps>;
   // Checkbox?: React.ReactElement<CheckboxProps>;

@@ -1,3 +1,5 @@
+import { capitalize } from "lodash";
+
 const useMetaError = (
   fieldState
 ): { hasError: boolean; errorMessage: string } => {
@@ -5,7 +7,7 @@ const useMetaError = (
   const errorMessage = invalid && error.message;
   return {
     hasError: !!errorMessage,
-    errorMessage,
+    errorMessage: capitalize(errorMessage),
   };
 };
 
