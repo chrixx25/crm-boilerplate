@@ -1,9 +1,8 @@
-import { cloneElement } from "react";
+import { cloneElement, useId } from "react";
 
 import type { CustomMenuProp } from "./types";
 
 import MuiMenu from "@mui/material/Menu";
-import { nanoid } from "@reduxjs/toolkit";
 import {
   usePopupState,
   bindTrigger,
@@ -16,8 +15,9 @@ import SubMenu from "./SubMenu";
 
 const Menu = (props: CustomMenuProp): React.ReactElement => {
   const { action, children, ...rest } = props;
+  const uniqueId = useId();
 
-  const popupState = usePopupState({ variant: "popover", popupId: nanoid() });
+  const popupState = usePopupState({ variant: "popover", popupId: uniqueId });
 
   const createClickHandler = (childProps) => () => {
     popupState.close();
