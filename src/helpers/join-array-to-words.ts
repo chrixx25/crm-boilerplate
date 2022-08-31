@@ -1,6 +1,6 @@
 import { map, filter, join } from "lodash";
 
-const joinArrayToWords = (words: Array<any>): string => {
+const joinArrayToWords = (words: Array<string>): string => {
   const isSecondOrder = words.length === 2;
   const sentence = join(
     map(

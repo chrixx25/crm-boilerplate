@@ -7,10 +7,15 @@ import DialogContent from "@mui/material/DialogContent";
 import MuiDialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import Slide, { SlideProps } from "@mui/material/Slide";
-import { styled } from "@mui/material/styles";
+import { styled, Theme } from "@mui/material/styles";
 import { noop } from "lodash";
 
 import { ModalProps } from "./types";
+
+interface DialogProps {
+  theme?: Theme;
+  justifyContent?: string;
+}
 
 // eslint-disable-next-line react/display-name
 const Transition = forwardRef(
@@ -19,18 +24,22 @@ const Transition = forwardRef(
   )
 );
 
-const DialogTitle = styled(MuiDialogTitle)(({ theme }) => ({
+const DialogTitle = styled(MuiDialogTitle, {
+  shouldForwardProp: (prop) => prop !== "justifyContent",
+})<DialogProps>(({ theme, justifyContent }) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent,
   paddingTop: theme.spacing(1),
   paddingBottom: theme.spacing(1),
 }));
 
-const DialogActions = styled(MuiDialogActions)(({ theme }) => ({
+const DialogActions = styled(MuiDialogActions, {
+  shouldForwardProp: (prop) => prop !== "justifyContent",
+})<DialogProps>(({ theme, justifyContent }) => ({
   display: "flex",
   alignItems: "center",
-  // justifyContent: "space-between",
+  justifyContent,
   padding: theme.spacing(3, 2),
 }));
 
@@ -62,7 +71,7 @@ const Modal = (props: ModalProps): React.ReactElement => {
       open={open}
       onClose={onClose}
     >
-      <DialogTitle>
+      <DialogTitle justifyContent={title ? "space-between" : "flex-end"}>
         {title}
         {closeIcon && (
           <IconButton color="inherit" edge="end" onClick={onClose}>
