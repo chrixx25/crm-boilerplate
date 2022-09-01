@@ -12,7 +12,7 @@ import {
 
 export const useAddContact = (): UseMutationResult<
   ContactByIdResponse & { id: string },
-  AxiosError
+  string
 > => {
   const queryClient = useQueryClient();
   const { enqueueSnackbar } = useSnackbar();
@@ -35,6 +35,11 @@ export const useAddContact = (): UseMutationResult<
       //   }
       // })
     },
+    onError: (error) => {
+      enqueueSnackbar(error, {
+        variant: "error",
+      });
+    },
   });
 };
 
@@ -43,6 +48,7 @@ export const useDeleteContact = (): UseMutationResult<
   AxiosError
 > => {
   const queryClient = useQueryClient();
+  const { enqueueSnackbar } = useSnackbar();
   return useMutation(deleteContact, {
     onSuccess: () => {
       /** Query Invalidation Start */
@@ -56,13 +62,18 @@ export const useDeleteContact = (): UseMutationResult<
       //   }
       // })
     },
+    onError: (error) => {
+      enqueueSnackbar(error?.message, {
+        variant: "error",
+      });
+    },
   });
 };
 
 export const useUpdateContact = (
   id: string,
-  meta: any
-): UseMutationResult<ContactByIdResponse & { id: string }, AxiosError> => {
+  meta?: Record<string, any>
+): UseMutationResult<ContactByIdResponse, AxiosError> => {
   const queryClient = useQueryClient();
   const { enqueueSnackbar } = useSnackbar();
   return useMutation((data: ContactParams) => updateContact(id, data), {
@@ -85,6 +96,11 @@ export const useUpdateContact = (
           return oldContacts;
         }
       );
+    },
+    onError: (error) => {
+      enqueueSnackbar(error?.message, {
+        variant: "error",
+      });
     },
   });
 };

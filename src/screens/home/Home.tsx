@@ -1,17 +1,22 @@
 import React, { useState, useMemo } from "react";
 
+import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import { useModal } from "mui-modal-provider";
 
 import DataTable from "@/components/DataTable";
 import { useGetContacts } from "@/react-query/queries";
+import PageHeader from "@/components/PageHeader";
 
 import ActionCell from "./action-cell";
+import AddUserModal from "./add-user-modal";
 
 const Home = (): React.ReactElement => {
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
   const userData = useGetContacts({ page, pageSize });
+  const { showModal } = useModal();
 
   const columns = useMemo(
     () => [
@@ -57,18 +62,21 @@ const Home = (): React.ReactElement => {
   return (
     <>
       <Stack spacing={3}>
-        <Stack direction="row" spacing={2}>
+        <PageHeader
+          title="Users"
+          RefreshProps={{
+            onClick: userData.refetch,
+            disabled: userData.isRefetching,
+          }}
+        >
           <Button
-            type="submit"
-            variant="contained"
-            sx={{
-              backgroundColor: "primary.main",
-              maxWidth: "auto",
-            }}
+            sx={{ ml: 2 }}
+            startIcon={<AddIcon />}
+            onClick={() => showModal(AddUserModal)}
           >
-            Add Contact
+            Add New
           </Button>
-        </Stack>
+        </PageHeader>
         <DataTable
           data={userData.data.results}
           columns={columns}

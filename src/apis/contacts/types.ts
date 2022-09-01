@@ -7,7 +7,7 @@ export interface ContactsParams {
 
 export interface ContactParams {
   userName: string;
-  password: string;
+  password?: string;
   firstName: string;
   lastName: string;
   middleName: string;
