@@ -15,8 +15,12 @@ const StyledSnackbarContent = styled(SnackbarContent, {
   "&:before": {
     content: '""',
     position: "absolute",
-    backgroundColor:
-      theme.palette[variant === "success" ? "primary" : variant].main,
+    ...(theme && {
+      ...(variant && {
+        backgroundColor:
+          theme.palette[variant === "success" ? "primary" : variant].main,
+      }),
+    }),
     borderRadius: 2,
     width: "65%",
     height: 4,

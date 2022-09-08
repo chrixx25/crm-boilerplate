@@ -1,4 +1,6 @@
-import MuiTextField, { TextFieldProps } from "@mui/material/TextField";
+import type { TextFieldProps } from "./types";
+
+import MuiTextField from "@mui/material/TextField";
 import { useController } from "react-hook-form";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";

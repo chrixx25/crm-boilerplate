@@ -1,10 +1,3 @@
-export interface TextFieldProps {
-  type?: string;
-  label?: string;
-  name?: string;
-  placeholder?: string;
-  helperText?: string;
-  defaultValue?: string;
-  props?: any;
-  key?: any;
-}
+import type { TextFieldProps as BaseTextFieldProps } from "@mui/material/TextField";
+
+export type TextFieldProps = BaseTextFieldProps & { name: string };

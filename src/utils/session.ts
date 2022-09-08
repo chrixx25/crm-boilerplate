@@ -22,7 +22,7 @@ const noop = (context, user): any => ({
 });
 
 const sessionOptions = {
-  cookieName: process.env.NEXT_PUBLIC_COOKIE_NAME,
+  cookieName: process.env.NEXT_PUBLIC_COOKIE_NAME || "cookie",
   cookieOptions: {
     maxAge: undefined,
     secure: false,

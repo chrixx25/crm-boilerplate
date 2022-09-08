@@ -6,6 +6,6 @@ export interface DatePickerProps {
   mask?: string;
   defaultValue?: null;
   helperText?: string;
-  name?: string | undefined;
+  name: string;
   label?: string;
 }

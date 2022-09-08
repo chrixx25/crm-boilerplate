@@ -14,7 +14,7 @@ import { useMetaError } from "hooks";
 const DatePicker = (props: DatePickerProps): React.ReactElement => {
   const { formatReturned, format, helperText, name, defaultValue, ...rest } =
     props;
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const {
     field: { ref, value, ...field },
     fieldState,
