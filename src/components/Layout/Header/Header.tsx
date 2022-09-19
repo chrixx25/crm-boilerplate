@@ -31,22 +31,22 @@ interface AppBarProps extends BaseAppBarProps {
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(
-  ({ theme, open }: AppBarProps) =>
+  ({ theme, open }) =>
     theme && {
+      width: `calc(100% - ${theme.spacing(7)} + 1px)`,
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      ...(open &&
-        theme && {
-          marginLeft: theme.drawerWidth,
-          width: `calc(100% - ${theme.drawerWidth}px)`,
-          transition: theme.transitions.create(["width", "margin"], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-          }),
+      ...(open && {
+        marginLeft: theme.drawerWidth,
+        width: `calc(100% - ${theme.drawerWidth}px)`,
+        transition: theme.transitions.create(["width", "margin"], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.enteringScreen,
         }),
+      }),
     }
 );
 

@@ -13,6 +13,7 @@ const StripedTableRow = styled(TableRow)({
 
 const TableBody = (): React.ReactElement => {
   const { page, prepareRow } = useDataTableContext();
+
   return (
     <MuiTableBody>
       {page &&

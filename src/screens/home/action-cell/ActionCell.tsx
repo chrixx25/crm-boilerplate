@@ -29,7 +29,7 @@ const ActionCell = (props: ActionCellProps): React.ReactElement => {
         onClick={() =>
           showModal(EditUserModal, {
             id,
-            meta: { page: meta.currentPage, pageSize: meta.pageSize },
+            meta: { page: meta.pageIndex, pageSize: meta.pageSize },
           })
         }
       >

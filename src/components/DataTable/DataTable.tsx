@@ -37,7 +37,7 @@ interface DefaultCellProps {
   value: string | undefined;
 }
 
-interface IlabelDisplayedRows {
+interface LabelDisplayedProps {
   from: number;
   to: number;
   count: number;
@@ -76,7 +76,7 @@ const DataTable = (props: DataTableProps): React.ReactElement => {
           }),
           [state]
         ),
-      initialState: { currentPage, pageSize },
+      initialState: { pageIndex: currentPage, pageSize },
       manualPagination: true,
       pageCount: totalPages,
     },
@@ -94,11 +94,14 @@ const DataTable = (props: DataTableProps): React.ReactElement => {
     from,
     to,
     count,
-  }: IlabelDisplayedRows): string {
+  }: LabelDisplayedProps): string {
     return `Showing ${from} to ${to} of ${count} entries`;
   }
 
-  function handleChangePage(_event, newPage: number): void {
+  function handleChangePage(
+    _event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ): void {
     onPageChange(newPage);
   }
 
