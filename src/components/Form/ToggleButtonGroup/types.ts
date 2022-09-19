@@ -6,6 +6,6 @@ export interface ToggleButtonGroupTypeProps {
   ToggleButtonGroupProps?: any;
   FormHelperTextProps?: any;
   children?: React.ReactNode;
-  name?: string;
+  name: string;
   defaultValue?: any;
 }

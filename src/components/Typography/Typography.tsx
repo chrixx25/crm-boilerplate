@@ -12,7 +12,7 @@ interface TypographyProps extends BaseTypographyProps {
 const Typography = styled(MuiTypography, {
   shouldForwardProp: (props) => props !== "fontSize",
 })<TypographyProps>(({ theme, fontSize }) => ({
-  fontSize: theme.typography.pxToRem(fontSize),
+  ...(fontSize && { fontSize: theme.typography.pxToRem(fontSize) }),
 }));
 
 Typography.defaultProps = {

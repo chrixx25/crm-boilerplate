@@ -16,13 +16,13 @@ export const useGetContacts = (
   });
 
 export const useGetContactById = (
-  id: string | undefined
+  id: string
 ): UseQueryResult<ContactByIdResponse> => {
   const queryClient = useQueryClient();
   return useQuery(["contact", id], () => getContactById(id), {
     enabled: !!id,
     initialData: () => {
-      const contacts: ContactByIdResponse[] =
+      const contacts: ContactByIdResponse[] | undefined =
         queryClient.getQueryData("contacts");
       const contact =
         contacts && contacts.find((contactData) => contactData.id === id);

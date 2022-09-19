@@ -68,7 +68,7 @@ const Modal = (props: ModalProps): React.ReactElement => {
       maxWidth={maxWidth}
       disableEscapeKeyDown={disableEscapeKeyDown}
       fullWidth
-      open={open}
+      open={open || false}
       onClose={onClose}
     >
       <DialogTitle justifyContent={title ? "space-between" : "flex-end"}>

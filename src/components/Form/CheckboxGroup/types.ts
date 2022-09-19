@@ -10,7 +10,7 @@ export interface CheckboxProps extends BaseCheckboxProps {
 export interface CheckboxGroupProps {
   row?: boolean;
   label?: string;
-  name?: string;
+  name: string;
   helperText?: string;
   defaultValue?: Array<any>;
   options?: Array<any>;

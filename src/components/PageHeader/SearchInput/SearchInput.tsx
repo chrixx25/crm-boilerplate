@@ -32,7 +32,7 @@ const SearchInput = (props: InputBaseProps): React.ReactElement => {
 
   useDebounce(
     () => {
-      onChange(value);
+      if (onChange !== undefined) onChange(value);
     },
     700,
     [value]

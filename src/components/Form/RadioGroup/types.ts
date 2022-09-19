@@ -10,7 +10,7 @@ export interface RadioProps {
 export interface RadioGroupProps {
   row?: boolean;
   label?: string;
-  name?: string;
+  names: string;
   helperText?: string;
   defaultValue?: string;
   options: Array<any>;

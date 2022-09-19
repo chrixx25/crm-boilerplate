@@ -20,7 +20,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-import { sessionOptions } from "utils/session";
+import { sessionOptions } from "@/utils/session";
 import { useAppState } from "@/contexts/TogglerProvider";
 
 interface AppBarProps extends BaseAppBarProps {
@@ -30,21 +30,25 @@ interface AppBarProps extends BaseAppBarProps {
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }: AppBarProps) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: theme.drawerWidth,
-    width: `calc(100% - ${theme.drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
+})<AppBarProps>(
+  ({ theme, open }) =>
+    theme && {
+      width: `calc(100% - ${theme.spacing(7)} + 1px)`,
+      zIndex: theme.zIndex.drawer + 1,
+      transition: theme.transitions.create(["width", "margin"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      ...(open && {
+        marginLeft: theme.drawerWidth,
+        width: `calc(100% - ${theme.drawerWidth}px)`,
+        transition: theme.transitions.create(["width", "margin"], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+      }),
+    }
+);
 
 const Header = (): React.ReactElement => {
   const popupState = usePopupState({

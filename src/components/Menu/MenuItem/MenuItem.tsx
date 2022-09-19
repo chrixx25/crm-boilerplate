@@ -12,10 +12,11 @@ const MenuItem = (props: CustomMenuItemProps): React.ReactElement => {
   return (
     <MuiMenuItem {...rest}>
       <ListItemIcon>
-        {cloneElement(icon, {
-          color: "action",
-          fontSize: "small",
-        })}
+        {icon &&
+          cloneElement(icon, {
+            color: "action",
+            fontSize: "small",
+          })}
       </ListItemIcon>
       {children}
     </MuiMenuItem>

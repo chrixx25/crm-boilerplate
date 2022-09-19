@@ -14,27 +14,28 @@ const TableHead = (): React.ReactElement => {
 
   return (
     <MuiTableHead>
-      {headerGroups.map((headerGroup) => (
-        <TableRow {...headerGroup.getHeaderGroupProps()} key={uniqueId}>
-          {headerGroup.headers.map((column) => (
-            <TableCell
-              {...(column.id === "selection"
-                ? column.getHeaderProps()
-                : column.getHeaderProps(column.getSortByToggleProps()))}
-              key={column.id}
-            >
-              {column.render("Header")}
-              {column.canSort && column.id !== "selection" && (
-                <TableSortLabel
-                  key={column.id}
-                  active={column.isSorted}
-                  direction={column.isSortedDesc ? "desc" : "asc"}
-                />
-              )}
-            </TableCell>
-          ))}
-        </TableRow>
-      ))}
+      {headerGroups &&
+        headerGroups.map((headerGroup) => (
+          <TableRow {...headerGroup.getHeaderGroupProps()} key={uniqueId}>
+            {headerGroup.headers.map((column: any) => (
+              <TableCell
+                {...(column.id === "selection"
+                  ? column.getHeaderProps()
+                  : column.getHeaderProps(column.getSortByToggleProps()))}
+                key={column.id}
+              >
+                {column.render("Header")}
+                {column.canSort && column.id !== "selection" && (
+                  <TableSortLabel
+                    key={column.id}
+                    active={column.isSorted}
+                    direction={column.isSortedDesc ? "desc" : "asc"}
+                  />
+                )}
+              </TableCell>
+            ))}
+          </TableRow>
+        ))}
     </MuiTableHead>
   );
 };

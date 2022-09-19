@@ -100,7 +100,7 @@ const Autocomplete = (props: AutocompleteProps): React.ReactElement => {
       helperText={hasError ? errorMessage : helperText}
       InputProps={{
         ...params.InputProps,
-        ...theme.components.MuiTextField.defaultProps.InputProps,
+        ...theme.components?.MuiTextField?.defaultProps?.InputProps,
       }}
     />
   );

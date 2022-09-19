@@ -66,6 +66,7 @@ yup.addMethod(yup.string, "phone", function phone() {
     test: (value) =>
       isEmpty(value) ||
       (phoneUtil.isValidNumber(phoneUtil.parse(value, "PH")) &&
+        value &&
         /(\+?\d{2}?\s?\d{3}\s?\d{3}\s?\d{4})|([0]\d{3}\s?\d{3}\s?\d{4})/g.test(
           value.replace(/^/, "63")
         )),
